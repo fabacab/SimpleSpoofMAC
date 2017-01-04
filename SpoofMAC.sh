@@ -5,6 +5,12 @@ StartService ()
 {
     ConsoleMessage "Running SpoofMAC script."
     ConsoleMessage "Path is $PATH"
+    if [ "$SIMPLE_SPOOF_MAC_AND_NAME" -eq 1 ]; then
+        local new_name=`openssl rand -hex 3`
+        networksetup -setcomputername "$new_name"
+        scutil --set LocalHostName "$new_name"
+        scutil --set HostName "$new_name"
+    fi
     local WIFI_HW_PORT=`networksetup -listallhardwareports \
         | grep -A 2 'Wi-Fi' | grep -E '^Device' | cut -d ' ' -f 2`
     if [ x`getAirportPowerState "$WIFI_HW_PORT"` == x"Off" ]; then
