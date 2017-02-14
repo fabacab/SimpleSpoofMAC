@@ -10,6 +10,11 @@
     <true/>
     <key>KeepAlive</key>
     <false/>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>SIMPLE_SPOOF_MAC_AND_NAME</key>
+        <string>0</string>
+    </dict>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/local/libexec/SpoofMAC.sh</string>
