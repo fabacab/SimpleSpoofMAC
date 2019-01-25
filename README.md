@@ -33,8 +33,8 @@ cd SimpleSpoofMAC
 sudo mkdir -p /usr/local/libexec
 sudo cp SpoofMAC.sh /usr/local/libexec                       # Install script.
 # Install ONE (not both) of the launchd service jobs. (This defaults to the MAC and name spoofing service.)
-sudo cp local.SpoofMACandName.plist /Library/LaunchDaemons \ # for the MAC and hostname randomization service.
-  || sudo cp local.SpoofMAC.plist /Library/LaunchDaemons     # for the MAC-only randomization service.
+sudo cp local.SpoofMACandName.plist /Library/LaunchDaemons \
+  || sudo cp local.SpoofMAC.plist /Library/LaunchDaemons
 sudo shutdown -r +1 "Rebooting in 1 minute."                 # Reboot your Macintosh.
 ```
 
