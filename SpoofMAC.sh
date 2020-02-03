@@ -6,7 +6,12 @@ StartService ()
     ConsoleMessage "Running SpoofMAC script."
     ConsoleMessage "Path is $PATH"
     if [ "$SIMPLE_SPOOF_MAC_AND_NAME" -eq 1 ]; then
-        local new_name=`openssl rand -hex 3`
+        local new_name=""
+        if [ -z "$SIMPLE_SPOOF_MAC_NAMES_FILE" ]; then
+            new_name=`openssl rand -hex 3`
+        else
+            new_name="$(tail -n $(jot -r 1 1 $(echo $(wc -l < "$SIMPLE_SPOOF_MAC_NAMES_FILE"))) "$SIMPLE_SPOOF_MAC_NAMES_FILE" | head -n 1 | tr -d "\n\r")"
+        fi
         networksetup -setcomputername "$new_name"
         scutil --set LocalHostName "$new_name"
         scutil --set HostName "$new_name"
